@@ -88,7 +88,6 @@ class DartsGameStateManager {
         switch self.state {
         case .searchingForWalls:
             self.hitTestWall(tapLocation)
-            self.throwDart(tapLocation)
         case .playingDarts:
             self.throwDart(tapLocation)
         }
@@ -97,18 +96,20 @@ class DartsGameStateManager {
     private func hitTestWall(_ tapLocation: CGPoint) {
         // Search the scene and not the world (https://stackoverflow.com/a/46189006/5071723)
         let hitTestResults = sceneView.hitTest(tapLocation, options: nil)
-        guard let hitTestResultNode = hitTestResults.first else { return }
+        guard let hitTestResult = hitTestResults.first else { return }
         
-        guard let currentContents = hitTestResultNode.node.geometry?.firstMaterial?.diffuse.contents as? UIColor else { return }
+        let hitTestResultNode = hitTestResult.node
         
-        if currentContents == self.detectedPlaneMaterial {
-            hitTestResultNode.node.geometry?.firstMaterial?.diffuse.contents = self.selectedPlaneMaterial
-        } else if currentContents == self.selectedPlaneMaterial {
-            hitTestResultNode.node.geometry?.firstMaterial?.diffuse.contents = dartboardMaterial
+        if (hitTestResultNode.geometry?.firstMaterial?.diffuse.contents as? UIColor) == self.detectedPlaneMaterial {
+            hitTestResultNode.geometry?.firstMaterial?.diffuse.contents = self.selectedPlaneMaterial
+        } else if (hitTestResultNode.geometry?.firstMaterial?.diffuse.contents as? UIColor) == self.selectedPlaneMaterial {
+            hitTestResultNode.geometry?.firstMaterial?.diffuse.contents = self.dartboardMaterial
         }
     }
     
     private func throwDart(_ tapLocation: CGPoint) {
+        
+        guard self.state == .playingDarts else { return }
         
         let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         guard let hitTestResult = hitTestResults.first else { return }
