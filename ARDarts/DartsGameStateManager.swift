@@ -104,6 +104,7 @@ class DartsGameStateManager {
             hitTestResultNode.geometry?.firstMaterial?.diffuse.contents = self.selectedPlaneMaterial
         } else if (hitTestResultNode.geometry?.firstMaterial?.diffuse.contents as? UIColor) == self.selectedPlaneMaterial {
             hitTestResultNode.geometry?.firstMaterial?.diffuse.contents = self.dartboardMaterial
+            self.state = .playingDarts
         }
     }
     
@@ -139,7 +140,7 @@ class DartsGameStateManager {
         let animation = CABasicAnimation(keyPath: "position")
         animation.fromValue = startPosition
         animation.toValue = endPosition
-        animation.duration = 1.0  // seconds
+        animation.duration = 0.5  // seconds
         CATransaction.setCompletionBlock {
             dartNode.position = endPosition
         }
