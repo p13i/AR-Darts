@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C375D7520C4ABEF005ABF2C /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C375D7420C4ABEF005ABF2C /* Logo.png */; };
 		1C89B4A7208C1C44006C02A0 /* SCNMatrix4Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */; };
 		1C89B4A9208C20E2006C02A0 /* SCNVector3Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C89B4A8208C20E2006C02A0 /* SCNVector3Extensions.swift */; };
 		1C89B4AB208C21C8006C02A0 /* SCNQuaternionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C89B4AA208C21C8006C02A0 /* SCNQuaternionExtensions.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C375D7420C4ABEF005ABF2C /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = SOURCE_ROOT; };
 		1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMatrix4Extensions.swift; sourceTree = "<group>"; };
 		1C89B4A8208C20E2006C02A0 /* SCNVector3Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3Extensions.swift; sourceTree = "<group>"; };
 		1C89B4AA208C21C8006C02A0 /* SCNQuaternionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNQuaternionExtensions.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				1C89B4A8208C20E2006C02A0 /* SCNVector3Extensions.swift */,
 				1CEF1790208ADDC4006FF808 /* AppDelegate.swift */,
 				1C89B4AC208C2601006C02A0 /* dartboard.png */,
+				1C375D7420C4ABEF005ABF2C /* Logo.png */,
 				1CEF1792208ADDC4006FF808 /* art.scnassets */,
 				1CEF1794208ADDC4006FF808 /* ViewController.swift */,
 				1CEF1796208ADDC4006FF808 /* Main.storyboard */,
@@ -140,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C375D7520C4ABEF005ABF2C /* Logo.png in Resources */,
 				1CEF1793208ADDC4006FF808 /* art.scnassets in Resources */,
 				1C89B4AD208C2601006C02A0 /* dartboard.png in Resources */,
 				1CEF179D208ADDC5006FF808 /* LaunchScreen.storyboard in Resources */,
