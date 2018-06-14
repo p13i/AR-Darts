@@ -130,10 +130,10 @@ class DartsGameStateManager {
         let dartNode = SCNNode(geometry: dartGeometry)
         let dartboardPlaneOrientation = SCNMatrix4(hitTestResult.worldTransform).orientation
         dartNode.orientation = SCNQuaternion(
-            x: dartboardPlaneOrientation.x,
-            y: dartboardPlaneOrientation.y,
-            z: dartboardPlaneOrientation.z,
-            w: dartboardPlaneOrientation.w * -1.0)
+            x: dartboardPlaneOrientation.x - self.sceneView.pointOfView!.orientation.x,
+            y: dartboardPlaneOrientation.y - self.sceneView.pointOfView!.orientation.y,
+            z: dartboardPlaneOrientation.z - self.sceneView.pointOfView!.orientation.z,
+            w: dartboardPlaneOrientation.w - self.sceneView.pointOfView!.orientation.w)
         
         // Animate the motion from the camera to the plane
         CATransaction.begin()
