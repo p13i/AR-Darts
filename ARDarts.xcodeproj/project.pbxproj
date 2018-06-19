@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C375D7520C4ABEF005ABF2C /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C375D7420C4ABEF005ABF2C /* Logo.png */; };
+		1C629B5920D8AC450002B702 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C629B5820D8AC450002B702 /* Materials.swift */; };
 		1C89B4A7208C1C44006C02A0 /* SCNMatrix4Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */; };
 		1C89B4AD208C2601006C02A0 /* dartboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C89B4AC208C2601006C02A0 /* dartboard.png */; };
 		1CEF1791208ADDC4006FF808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF1790208ADDC4006FF808 /* AppDelegate.swift */; };
@@ -16,11 +17,11 @@
 		1CEF1798208ADDC4006FF808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF1796208ADDC4006FF808 /* Main.storyboard */; };
 		1CEF179A208ADDC5006FF808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF1799208ADDC5006FF808 /* Assets.xcassets */; };
 		1CEF179D208ADDC5006FF808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF179B208ADDC5006FF808 /* LaunchScreen.storyboard */; };
-		1CF17304209B4FE400B9B626 /* DartsGameStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF17303209B4FE400B9B626 /* DartsGameStateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1C375D7420C4ABEF005ABF2C /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = SOURCE_ROOT; };
+		1C629B5820D8AC450002B702 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
 		1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMatrix4Extensions.swift; sourceTree = "<group>"; };
 		1C89B4AC208C2601006C02A0 /* dartboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dartboard.png; sourceTree = "<group>"; };
 		1CEF178D208ADDC4006FF808 /* ARDarts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARDarts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,7 +32,6 @@
 		1CEF1799208ADDC5006FF808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CEF179C208ADDC5006FF808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1CEF179E208ADDC5006FF808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1CF17303209B4FE400B9B626 /* DartsGameStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartsGameStateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +73,8 @@
 				1CEF1799208ADDC5006FF808 /* Assets.xcassets */,
 				1CEF179B208ADDC5006FF808 /* LaunchScreen.storyboard */,
 				1CEF179E208ADDC5006FF808 /* Info.plist */,
+				1C629B5820D8AC450002B702 /* Materials.swift */,
 				1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */,
-				1CF17303209B4FE400B9B626 /* DartsGameStateManager.swift */,
 			);
 			path = ARDarts;
 			sourceTree = "<group>";
@@ -153,10 +153,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C629B5920D8AC450002B702 /* Materials.swift in Sources */,
 				1CEF1795208ADDC4006FF808 /* ViewController.swift in Sources */,
 				1C89B4A7208C1C44006C02A0 /* SCNMatrix4Extensions.swift in Sources */,
 				1CEF1791208ADDC4006FF808 /* AppDelegate.swift in Sources */,
-				1CF17304209B4FE400B9B626 /* DartsGameStateManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
