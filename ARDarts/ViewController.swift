@@ -68,9 +68,6 @@ class ViewController: UIViewController {
     
     // Don't allow screen to rotate (make AR scene look bad for a few moments as it re-renders)
     override var shouldAutorotate: Bool { get { return false } }
-
-    // Maintains the currently selected plane (where the dartboard is placed)
-    var selectedPlane: ARPlaneAnchor?
 }
 
 // MARK: - ARSCNViewDelegate
@@ -91,6 +88,7 @@ extension ViewController: ARSCNViewDelegate {
 
     enum DartsGameState {
         case searchingForWalls
+        case confirmingSelectedWall
         case playingDarts
     }
     
@@ -101,13 +99,7 @@ extension ViewController: ARSCNViewDelegate {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         
         // Add a new detected plane to the scene
-        let newPlaneNode = SCNNode()
-        newPlaneNode.geometry = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
-        newPlaneNode.geometry?.firstMaterial?.diffuse.contents = Materials.detectedPlaneMaterial
-        newPlaneNode.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
-        newPlaneNode.eulerAngles = SCNVector3(-1 * Float.pi / 2, 0, 0)
-        
-        node.addChildNode(newPlaneNode)
+        planeAnchor.addPlaneNode(on: node, contents: Materials.detectedPlaneMaterial)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, willUpdate node: SCNNode, for anchor: ARAnchor) {
@@ -119,10 +111,7 @@ extension ViewController: ARSCNViewDelegate {
         // Update the node's geometry and material
         guard let updatedNode = node.childNodes.first else { return }
         // Keep the same material
-        let updatedGeometry = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
-        updatedGeometry.firstMaterial?.diffuse.contents = updatedNode.geometry?.firstMaterial?.diffuse.contents
-        updatedNode.geometry = updatedGeometry
-        updatedNode.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
+        planeAnchor.updatePlaneNode(on: updatedNode, contents: Materials.detectedPlaneMaterial)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
@@ -134,26 +123,52 @@ extension ViewController: ARSCNViewDelegate {
         let tapLocation = recognizer.location(in: self.sceneView)
         switch self.state {
         case .searchingForWalls:
-            self.hitTestWall(tapLocation)
+            self.selectWall(tapLocation)
+        case .confirmingSelectedWall:
+            self.confirmWall(tapLocation)
         case .playingDarts:
             self.throwDart(tapLocation)
         }
     }
     
-    private func hitTestWall(_ tapLocation: CGPoint) {
+    private func selectWall(_ tapLocation: CGPoint) {
         // Search the scene and not the world (https://stackoverflow.com/a/46189006/5071723)
-        let hitTestResults = sceneView.hitTest(tapLocation, options: nil)
-        guard let hitTestResult = hitTestResults.first else { return }
+        let hitTestARResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+        guard let hitTestARResult = hitTestARResults.first else { return }
+        guard let planeAnchor = hitTestARResult.anchor as? ARPlaneAnchor else { return }
         
-        let hitTestResultNode = hitTestResult.node
+        NSLog("AR Hit!")
         
-        let firstMaterialContents = (hitTestResultNode.geometry?.firstMaterial?.diffuse.contents as? UIColor)
-        if firstMaterialContents == Materials.detectedPlaneMaterial {
-            hitTestResultNode.geometry?.firstMaterial?.diffuse.contents = Materials.selectedPlaneMaterial
-        } else if firstMaterialContents == Materials.selectedPlaneMaterial {
-            hitTestResultNode.geometry?.firstMaterial?.diffuse.contents = Materials.dartboardMaterial
-            self.state = .playingDarts
-        }
+        
+        let hitTestSCNResults = sceneView.hitTest(tapLocation, options: nil)
+        guard let hitTestSCNResult = hitTestSCNResults.first else { return }
+        let hitTestSCNNode = hitTestSCNResult.node
+        
+        NSLog("SCN Hit!")
+        
+        planeAnchor.updatePlaneNode(on: hitTestSCNNode, contents: Materials.selectedPlaneMaterial)
+        
+        self.state = .confirmingSelectedWall
+    }
+    
+    private func confirmWall(_ tapLocation: CGPoint) {
+        // Search the scene and not the world (https://stackoverflow.com/a/46189006/5071723)
+        let hitTestARResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+        guard let hitTestARResult = hitTestARResults.first else { return }
+        guard let planeAnchor = hitTestARResult.anchor as? ARPlaneAnchor else { return }
+        
+        NSLog("AR Hit! 2")
+        
+        
+        let hitTestSCNResults = sceneView.hitTest(tapLocation, options: nil)
+        guard let hitTestSCNResult = hitTestSCNResults.first else { return }
+        let hitTestSCNNode = hitTestSCNResult.node
+        
+        NSLog("SCN Hit! 2")
+        
+        planeAnchor.updatePlaneNode(on: hitTestSCNNode, contents: Materials.dartboardMaterial)
+        
+        self.state = .playingDarts
     }
     
     private func throwDart(_ tapLocation: CGPoint) {
