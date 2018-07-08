@@ -62,10 +62,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJw-2S-PeL">
-                                <rect key="frame" x="20" y="74" width="335" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="vMw-gz-P9m"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="30" width="335" height="20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -73,10 +70,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="82T-jP-sxv" firstAttribute="trailing" secondItem="fJw-2S-PeL" secondAttribute="trailing" constant="20" id="Can-0N-mwY"/>
-                            <constraint firstItem="82T-jP-sxv" firstAttribute="bottom" secondItem="fJw-2S-PeL" secondAttribute="bottom" constant="30" id="DW7-qx-13g"/>
-                            <constraint firstItem="fJw-2S-PeL" firstAttribute="top" secondItem="82T-jP-sxv" secondAttribute="top" constant="30" id="OqS-pe-RYL"/>
-                            <constraint firstItem="fJw-2S-PeL" firstAttribute="leading" secondItem="82T-jP-sxv" secondAttribute="leading" constant="20" id="ZZC-kK-ZPi"/>
+                            <constraint firstAttribute="trailing" secondItem="fJw-2S-PeL" secondAttribute="trailing" constant="20" id="4YY-KT-gPg"/>
+                            <constraint firstItem="fJw-2S-PeL" firstAttribute="leading" secondItem="Ozx-Kc-ZcJ" secondAttribute="leading" constant="20" id="Gpn-c5-bHd"/>
+                            <constraint firstItem="fJw-2S-PeL" firstAttribute="top" secondItem="Ozx-Kc-ZcJ" secondAttribute="top" constant="30" id="vrL-PI-1SH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="82T-jP-sxv"/>
                     </view>
@@ -86,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAK-z0-DFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865" y="-235"/>
+            <point key="canvasLocation" x="1460" y="-218"/>
         </scene>
     </scenes>
 </document>
