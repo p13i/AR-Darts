@@ -132,6 +132,8 @@ extension ViewController: ARSCNViewDelegate {
     }
     
     private func selectWall(_ tapLocation: CGPoint) {
+        guard self.state == .searchingForWalls else { fatalError() }
+        
         // Search the scene and not the world (https://stackoverflow.com/a/46189006/5071723)
         let hitTestARResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         guard let hitTestARResult = hitTestARResults.first else { return }
