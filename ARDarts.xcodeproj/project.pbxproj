@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C375D7520C4ABEF005ABF2C /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C375D7420C4ABEF005ABF2C /* Logo.png */; };
+		1C55728A20F1DB09003D2BF7 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C55728920F1DB09003D2BF7 /* StatusViewController.swift */; };
 		1C629B5920D8AC450002B702 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C629B5820D8AC450002B702 /* Materials.swift */; };
 		1C629B5C20D8E5050002B702 /* ARPlaneAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C629B5B20D8E5050002B702 /* ARPlaneAnchor.swift */; };
 		1C89B4A7208C1C44006C02A0 /* SCNMatrix4Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		1C375D7420C4ABEF005ABF2C /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = SOURCE_ROOT; };
+		1C55728920F1DB09003D2BF7 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		1C629B5820D8AC450002B702 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
 		1C629B5B20D8E5050002B702 /* ARPlaneAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPlaneAnchor.swift; sourceTree = "<group>"; };
 		1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMatrix4Extensions.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				1CEF179E208ADDC5006FF808 /* Info.plist */,
 				1C629B5820D8AC450002B702 /* Materials.swift */,
 				1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */,
+				1C55728920F1DB09003D2BF7 /* StatusViewController.swift */,
 			);
 			path = ARDarts;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				1C629B5920D8AC450002B702 /* Materials.swift in Sources */,
 				1CEF1795208ADDC4006FF808 /* ViewController.swift in Sources */,
 				1C89B4A7208C1C44006C02A0 /* SCNMatrix4Extensions.swift in Sources */,
+				1C55728A20F1DB09003D2BF7 /* StatusViewController.swift in Sources */,
 				1CEF1791208ADDC4006FF808 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

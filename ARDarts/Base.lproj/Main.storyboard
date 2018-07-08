@@ -1,33 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="up" id="pXm-Vo-Q34"/>
                 <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARDarts" customModuleProvider="target" sceneMemberID="viewController">
-                    <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BrB-h1-WRS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" id="Zqn-gc-rZQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="pXm-Vo-Q34" appends="YES" id="EVm-Gh-vx4"/>
-                        </connections>
-                    </arscnView>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPQ-ZN-aIx">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                            </arscnView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROm-zG-nHR">
+                                <rect key="frame" x="0.0" y="44" width="375" height="80"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="bYp-4t-En4"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="EnK-L2-HnL" kind="embed" id="DUA-qz-fSW"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JPQ-ZN-aIx" firstAttribute="top" secondItem="VVd-xn-S5m" secondAttribute="top" id="3XP-pF-7Qp"/>
+                            <constraint firstItem="JPQ-ZN-aIx" firstAttribute="top" secondItem="VVd-xn-S5m" secondAttribute="top" id="3ao-gR-pl3"/>
+                            <constraint firstItem="VVd-xn-S5m" firstAttribute="trailing" secondItem="JPQ-ZN-aIx" secondAttribute="trailing" id="W9X-yx-Bxk"/>
+                            <constraint firstItem="JPQ-ZN-aIx" firstAttribute="leading" secondItem="VVd-xn-S5m" secondAttribute="leading" id="p6X-hm-nfv"/>
+                            <constraint firstItem="ROm-zG-nHR" firstAttribute="top" secondItem="VVd-xn-S5m" secondAttribute="top" id="pch-DT-e60"/>
+                            <constraint firstItem="ROm-zG-nHR" firstAttribute="leading" secondItem="VVd-xn-S5m" secondAttribute="leading" id="r4A-9m-uAV"/>
+                            <constraint firstItem="VVd-xn-S5m" firstAttribute="trailing" secondItem="ROm-zG-nHR" secondAttribute="trailing" id="u1F-ik-jy8"/>
+                            <constraint firstItem="VVd-xn-S5m" firstAttribute="bottom" secondItem="JPQ-ZN-aIx" secondAttribute="bottom" id="vnl-cR-TmZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VVd-xn-S5m"/>
+                    </view>
                     <connections>
-                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="sceneView" destination="JPQ-ZN-aIx" id="tdv-Kb-5TD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="pXm-Vo-Q34"/>
             </objects>
+        </scene>
+        <!--Status View Controller-->
+        <scene sceneID="aPU-lZ-KcN">
+            <objects>
+                <viewController title="Status View Controller" id="EnK-L2-HnL" customClass="StatusViewController" customModule="ARDarts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ozx-Kc-ZcJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJw-2S-PeL">
+                                <rect key="frame" x="20" y="74" width="335" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="vMw-gz-P9m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="82T-jP-sxv" firstAttribute="trailing" secondItem="fJw-2S-PeL" secondAttribute="trailing" constant="20" id="Can-0N-mwY"/>
+                            <constraint firstItem="82T-jP-sxv" firstAttribute="bottom" secondItem="fJw-2S-PeL" secondAttribute="bottom" constant="30" id="DW7-qx-13g"/>
+                            <constraint firstItem="fJw-2S-PeL" firstAttribute="top" secondItem="82T-jP-sxv" secondAttribute="top" constant="30" id="OqS-pe-RYL"/>
+                            <constraint firstItem="fJw-2S-PeL" firstAttribute="leading" secondItem="82T-jP-sxv" secondAttribute="leading" constant="20" id="ZZC-kK-ZPi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="82T-jP-sxv"/>
+                    </view>
+                    <connections>
+                        <outlet property="statusLabel" destination="fJw-2S-PeL" id="lKb-8M-vME"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xAK-z0-DFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="865" y="-235"/>
         </scene>
     </scenes>
 </document>

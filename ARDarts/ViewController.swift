@@ -15,6 +15,11 @@ class ViewController: UIViewController {
     var state: DartsGameState = .searchingForWalls
     @IBOutlet var sceneView: ARSCNView!
     
+    // From Apple's ARKitInteraction sample application
+    lazy var statusViewController: StatusViewController = {
+        return childViewControllers.lazy.flatMap({ $0 as? StatusViewController }).first!
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +62,9 @@ class ViewController: UIViewController {
 
         // Run the view's session
         sceneView.session.run(configuration)
+        
+        self.state = .searchingForWalls
+        self.statusViewController.status = .searchingForWalls
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -151,6 +159,7 @@ extension ViewController: ARSCNViewDelegate {
         planeAnchor.updatePlaneNode(on: hitTestSCNNode, contents: Materials.selectedPlaneMaterial)
         
         self.state = .confirmingSelectedWall
+        self.statusViewController.status = .searchingForWalls
     }
     
     private func confirmWall(_ tapLocation: CGPoint) {
@@ -171,6 +180,7 @@ extension ViewController: ARSCNViewDelegate {
         planeAnchor.updatePlaneNode(on: hitTestSCNNode, contents: Materials.dartboardMaterial)
         
         self.state = .playingDarts
+        self.statusViewController.status = .playingDarts
     }
     
     private func throwDart(_ tapLocation: CGPoint) {
