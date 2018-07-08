@@ -13,6 +13,7 @@ import ARKit
 class ViewController: UIViewController {
 
     var state: DartsGameState = .searchingForWalls
+    
     @IBOutlet var sceneView: ARSCNView!
     
     // From Apple's ARKitInteraction sample application
@@ -23,34 +24,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view's delegate
-        sceneView.delegate = self
+        self.sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        // Setttings for lighting...
-        sceneView.automaticallyUpdatesLighting = true
-        sceneView.autoenablesDefaultLighting = true
+        self.sceneView.showsStatistics = true
+        
+        self.sceneView.automaticallyUpdatesLighting = true
+        self.sceneView.autoenablesDefaultLighting = true
         
         // Set to true to animate the scene
         self.sceneView.isPlaying = true
         
-        // Create a new scene
-        let scene = SCNScene()
+        self.sceneView.scene = SCNScene()
         
-        // Set the scene to the view
-        sceneView.scene = scene
-        
-        sceneView.debugOptions = [
+        self.sceneView.debugOptions = [
             ARSCNDebugOptions.showFeaturePoints,
             ARSCNDebugOptions.showWorldOrigin,
         ]
         
-        let tapGestureRecognizer = UITapGestureRecognizer(
+        sceneView.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
-            action: #selector(ViewController.throwDart(withTapGesture: )))
-        
-        sceneView.addGestureRecognizer(tapGestureRecognizer)
+            action: #selector(ViewController.handleTap(withTapGesture: ))))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,18 +75,6 @@ class ViewController: UIViewController {
 
 extension ViewController: ARSCNViewDelegate {
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-    }
-
     enum DartsGameState {
         case searchingForWalls
         case confirmingSelectedWall
@@ -127,8 +108,9 @@ extension ViewController: ARSCNViewDelegate {
         guard self.state == .searchingForWalls else { return }
     }
     
-    @objc func throwDart(withTapGesture recognizer: UITapGestureRecognizer) {
+    @objc func handleTap(withTapGesture recognizer: UITapGestureRecognizer) {
         let tapLocation = recognizer.location(in: self.sceneView)
+        
         switch self.state {
         case .searchingForWalls:
             self.selectWall(tapLocation)
@@ -142,13 +124,9 @@ extension ViewController: ARSCNViewDelegate {
     private func selectWall(_ tapLocation: CGPoint) {
         guard self.state == .searchingForWalls else { fatalError() }
         
-        // Search the scene and not the world (https://stackoverflow.com/a/46189006/5071723)
         let hitTestARResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         guard let hitTestARResult = hitTestARResults.first else { return }
         guard let planeAnchor = hitTestARResult.anchor as? ARPlaneAnchor else { return }
-        
-        NSLog("AR Hit!")
-        
         
         let hitTestSCNResults = sceneView.hitTest(tapLocation, options: nil)
         guard let hitTestSCNResult = hitTestSCNResults.first else { return }
@@ -163,19 +141,13 @@ extension ViewController: ARSCNViewDelegate {
     }
     
     private func confirmWall(_ tapLocation: CGPoint) {
-        // Search the scene and not the world (https://stackoverflow.com/a/46189006/5071723)
         let hitTestARResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         guard let hitTestARResult = hitTestARResults.first else { return }
         guard let planeAnchor = hitTestARResult.anchor as? ARPlaneAnchor else { return }
         
-        NSLog("AR Hit! 2")
-        
-        
         let hitTestSCNResults = sceneView.hitTest(tapLocation, options: nil)
         guard let hitTestSCNResult = hitTestSCNResults.first else { return }
         let hitTestSCNNode = hitTestSCNResult.node
-        
-        NSLog("SCN Hit! 2")
         
         planeAnchor.updatePlaneNode(on: hitTestSCNNode, contents: Materials.dartboardMaterial)
         
