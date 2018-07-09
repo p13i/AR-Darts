@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPQ-ZN-aIx">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </arscnView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROm-zG-nHR">
                                 <rect key="frame" x="0.0" y="44" width="375" height="80"/>
@@ -34,14 +34,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JPQ-ZN-aIx" firstAttribute="top" secondItem="VVd-xn-S5m" secondAttribute="top" id="3XP-pF-7Qp"/>
-                            <constraint firstItem="JPQ-ZN-aIx" firstAttribute="top" secondItem="VVd-xn-S5m" secondAttribute="top" id="3ao-gR-pl3"/>
+                            <constraint firstItem="JPQ-ZN-aIx" firstAttribute="top" secondItem="Zqn-gc-rZQ" secondAttribute="top" id="3ao-gR-pl3"/>
+                            <constraint firstItem="VVd-xn-S5m" firstAttribute="trailing" secondItem="JPQ-ZN-aIx" secondAttribute="trailing" id="6x6-R4-Vqh"/>
                             <constraint firstItem="VVd-xn-S5m" firstAttribute="trailing" secondItem="JPQ-ZN-aIx" secondAttribute="trailing" id="W9X-yx-Bxk"/>
                             <constraint firstItem="JPQ-ZN-aIx" firstAttribute="leading" secondItem="VVd-xn-S5m" secondAttribute="leading" id="p6X-hm-nfv"/>
                             <constraint firstItem="ROm-zG-nHR" firstAttribute="top" secondItem="VVd-xn-S5m" secondAttribute="top" id="pch-DT-e60"/>
                             <constraint firstItem="ROm-zG-nHR" firstAttribute="leading" secondItem="VVd-xn-S5m" secondAttribute="leading" id="r4A-9m-uAV"/>
                             <constraint firstItem="VVd-xn-S5m" firstAttribute="trailing" secondItem="ROm-zG-nHR" secondAttribute="trailing" id="u1F-ik-jy8"/>
-                            <constraint firstItem="VVd-xn-S5m" firstAttribute="bottom" secondItem="JPQ-ZN-aIx" secondAttribute="bottom" id="vnl-cR-TmZ"/>
+                            <constraint firstAttribute="bottom" secondItem="JPQ-ZN-aIx" secondAttribute="bottom" id="vnl-cR-TmZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VVd-xn-S5m"/>
                     </view>
