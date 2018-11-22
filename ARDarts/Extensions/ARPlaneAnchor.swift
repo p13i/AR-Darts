@@ -15,24 +15,17 @@ extension ARPlaneAnchor {
     @discardableResult
     func addPlaneNode(on node: SCNNode, geometry: SCNGeometry, contents: Any) -> SCNNode {
         guard let material = geometry.materials.first else { fatalError() }
-        
         material.diffuse.contents = contents
-        
         let planeNode = SCNNode(geometry: geometry)
-        
         node.addChildNode(planeNode)
-        
         return planeNode
     }
     
     @discardableResult
     func updatePlaneNode(on node: SCNNode, geometry: SCNGeometry, contents: Any) -> SCNNode {
         guard let material = geometry.materials.first else { fatalError() }
-        
         material.diffuse.contents = contents
-        
         node.geometry = geometry
-        
         return node
     }
     

@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     // From Apple's ARKitInteraction sample application
     lazy var statusViewController: StatusViewController = {
-        return childViewControllers.lazy.flatMap({ $0 as? StatusViewController }).first!
+        return childViewControllers.lazy.compactMap({ $0 as? StatusViewController }).first!
     }()
     
     override func viewDidLoad() {
