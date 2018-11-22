@@ -1,4 +1,4 @@
-# AR-Darts
+# dARts
 Play darts in augmented reality 🎯
 
 ## Demo
@@ -6,3 +6,7 @@ Play darts in augmented reality 🎯
 Click image to go to YouTube video:
 
 [![Demo of AR-Darts application](https://img.youtube.com/vi/Dg9kcm_Li08/0.jpg)](https://www.youtube.com/watch?v=Dg9kcm_Li08)
+
+## App Icon
+
+![](Artwork/icon_60pt%403x.png)
