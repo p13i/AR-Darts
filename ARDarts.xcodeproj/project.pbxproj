@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C424A1F239A93FF0026EFDD /* UIStatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C424A1E239A93FF0026EFDD /* UIStatusLabel.swift */; };
+		1C424A21239AC1FE0026EFDD /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 1C424A20239AC1FE0026EFDD /* AppIcon.appiconset */; };
 		1C55728A20F1DB09003D2BF7 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C55728920F1DB09003D2BF7 /* StatusViewController.swift */; };
 		1C629B5920D8AC450002B702 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C629B5820D8AC450002B702 /* Materials.swift */; };
 		1C629B5C20D8E5050002B702 /* ARPlaneAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C629B5B20D8E5050002B702 /* ARPlaneAnchor.swift */; };
@@ -19,11 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C424A1E239A93FF0026EFDD /* UIStatusLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStatusLabel.swift; sourceTree = "<group>"; };
+		1C424A20239AC1FE0026EFDD /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		1C55728920F1DB09003D2BF7 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		1C629B5820D8AC450002B702 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
 		1C629B5B20D8E5050002B702 /* ARPlaneAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPlaneAnchor.swift; sourceTree = "<group>"; };
 		1C89B4A6208C1C44006C02A0 /* SCNMatrix4Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMatrix4Extensions.swift; sourceTree = "<group>"; };
-		1CEF178D208ADDC4006FF808 /* ARDarts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARDarts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CEF178D208ADDC4006FF808 /* Audio Reality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audio Reality.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CEF1790208ADDC4006FF808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CEF1794208ADDC4006FF808 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1CEF1797208ADDC4006FF808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C424A1D239A93E40026EFDD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1C424A1E239A93FF0026EFDD /* UIStatusLabel.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		1C55728B20F1E6F1003D2BF7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,7 +95,7 @@
 		1CEF178E208ADDC4006FF808 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1CEF178D208ADDC4006FF808 /* ARDarts.app */,
+				1CEF178D208ADDC4006FF808 /* Audio Reality.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +103,8 @@
 		1CEF178F208ADDC4006FF808 /* ARDarts */ = {
 			isa = PBXGroup;
 			children = (
+				1C424A20239AC1FE0026EFDD /* AppIcon.appiconset */,
+				1C424A1D239A93E40026EFDD /* UI */,
 				1CEF1790208ADDC4006FF808 /* AppDelegate.swift */,
 				1C55728C20F1E72A003D2BF7 /* Resources */,
 				1C55728B20F1E6F1003D2BF7 /* View Controllers */,
@@ -117,7 +131,7 @@
 			);
 			name = ARDarts;
 			productName = ARDarts;
-			productReference = 1CEF178D208ADDC4006FF808 /* ARDarts.app */;
+			productReference = 1CEF178D208ADDC4006FF808 /* Audio Reality.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -158,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C424A21239AC1FE0026EFDD /* AppIcon.appiconset in Resources */,
 				1CEF179D208ADDC5006FF808 /* LaunchScreen.storyboard in Resources */,
 				1CEF179A208ADDC5006FF808 /* Assets.xcassets in Resources */,
 				1CEF1798208ADDC4006FF808 /* Main.storyboard in Resources */,
@@ -174,6 +189,7 @@
 				1C629B5C20D8E5050002B702 /* ARPlaneAnchor.swift in Sources */,
 				1C629B5920D8AC450002B702 /* Materials.swift in Sources */,
 				1CEF1795208ADDC4006FF808 /* ViewController.swift in Sources */,
+				1C424A1F239A93FF0026EFDD /* UIStatusLabel.swift in Sources */,
 				1C89B4A7208C1C44006C02A0 /* SCNMatrix4Extensions.swift in Sources */,
 				1C55728A20F1DB09003D2BF7 /* StatusViewController.swift in Sources */,
 				1CEF1791208ADDC4006FF808 /* AppDelegate.swift in Sources */,
@@ -323,12 +339,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8A2R5M625L;
 				INFOPLIST_FILE = ARDarts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.pramodk.ARDarts;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.p13i.AudioReality;
+				PRODUCT_NAME = "Audio Reality";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -341,12 +358,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8A2R5M625L;
 				INFOPLIST_FILE = ARDarts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.pramodk.ARDarts;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.p13i.AudioReality;
+				PRODUCT_NAME = "Audio Reality";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -14,6 +14,10 @@ class ViewController: UIViewController {
 
     var state: DartsGameState = .searchingForWalls
     
+    var text: SCNText?
+    var textUpdateTimer: Timer?
+    var planeAnchor: ARPlaneAnchor?
+    
     @IBOutlet var sceneView: ARSCNView!
     
     // From Apple's ARKitInteraction sample application
@@ -38,7 +42,7 @@ class ViewController: UIViewController {
         
         self.sceneView.debugOptions = [
             ARSCNDebugOptions.showFeaturePoints,
-            ARSCNDebugOptions.showWorldOrigin,
+//            ARSCNDebugOptions.showWorldOrigin,
         ]
         
         sceneView.addGestureRecognizer(UITapGestureRecognizer(
@@ -78,7 +82,7 @@ extension ViewController: ARSCNViewDelegate {
     enum DartsGameState {
         case searchingForWalls
         case confirmingSelectedWall
-        case playingDarts
+        case presentingCaptions
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -116,8 +120,8 @@ extension ViewController: ARSCNViewDelegate {
             self.selectWall(tapLocation)
         case .confirmingSelectedWall:
             self.confirmWall(tapLocation)
-        case .playingDarts:
-            self.throwDart(tapLocation)
+        case .presentingCaptions:
+            self.presentCaptions(tapLocation)
         }
     }
     
@@ -149,54 +153,85 @@ extension ViewController: ARSCNViewDelegate {
         guard let hitTestSCNResult = hitTestSCNResults.first else { return }
         let hitTestSCNNode = hitTestSCNResult.node
         
-        planeAnchor.updatePlaneNode(on: hitTestSCNNode, contents: Materials.dartboardMaterial)
+        planeAnchor.updatePlaneNode(on: hitTestSCNNode, contents: Materials.planeMaterial)
         
-        self.state = .playingDarts
-        self.statusViewController.status = .playingDarts
+        self.planeAnchor = planeAnchor
+        
+        self.state = .presentingCaptions
+        self.statusViewController.status = .presentingCaptions
     }
     
-    private func throwDart(_ tapLocation: CGPoint) {
+    private func presentCaptions(_ tapLocation: CGPoint) {
         
-        guard self.state == .playingDarts else { return }
+        guard self.state == .presentingCaptions else { return }
         
         let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         guard let hitTestResult = hitTestResults.first else { return }
         
-        // Start at the camera's point-of-view
-        let startPosition = self.sceneView.pointOfView!.position
-        // End on the plane
-        let endPosition = SCNMatrix4(hitTestResult.worldTransform).position
-        
-        // Setup the dart cone
-        let dartGeometry = SCNCone(topRadius: 0.0, bottomRadius: 0.01, height: 0.1)
-        // Make the cone red
-        dartGeometry.firstMaterial!.diffuse.contents = UIColor.red
-        // Add a white sheen
-        dartGeometry.firstMaterial!.specular.contents = UIColor.white
-        // Place the dart in the scene
-        let dartNode = SCNNode(geometry: dartGeometry)
-        let dartboardPlaneOrientation = SCNMatrix4(hitTestResult.worldTransform).orientation
-        dartNode.orientation = SCNQuaternion(
-            x: dartboardPlaneOrientation.x - self.sceneView.pointOfView!.orientation.x,
-            y: dartboardPlaneOrientation.y - self.sceneView.pointOfView!.orientation.y,
-            z: dartboardPlaneOrientation.z - self.sceneView.pointOfView!.orientation.z,
-            w: dartboardPlaneOrientation.w - self.sceneView.pointOfView!.orientation.w)
-        
-        // Animate the motion from the camera to the plane
-        CATransaction.begin()
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.fromValue = startPosition
-        animation.toValue = endPosition
-        animation.duration = 0.5  // seconds
-        CATransaction.setCompletionBlock {
-            dartNode.position = endPosition
+        if self.text != nil {
+            return
         }
-        CATransaction.commit()
         
-        // Animate the dart's node
-        dartNode.addAnimation(animation, forKey: "throwDart")
+        guard let planeNode = self.sceneView.node(for: self.planeAnchor!) else { return }
+        
+        let scale = 0.002 as Float
+        
+        let rotationX = Double(planeNode.rotation.x)
+        let rotationY = Double(planeNode.rotation.y)
+        let rotationZ = Double(planeNode.rotation.z)
+        let rotationW = 0.0
+        
+        let positionX = hitTestResult.worldTransform.columns.3.x
+        let positionY = hitTestResult.worldTransform.columns.3.y
+        let positionZ = hitTestResult.worldTransform.columns.3.z
+        
+        let width = 300.0 as Float
+        let height = 20.0 as Float
+        let length = 5.0 as Float
+        
+        let text = SCNText(string: "This is a sample caption.", extrusionDepth: 1.0)
+        text.firstMaterial!.diffuse.contents = UIColor.white
+        let textNode = SCNNode(geometry: text)
+        textNode.scale = SCNVector3(scale, scale, scale)
+        textNode.rotation = SCNVector4(rotationX, rotationY, rotationZ, rotationW)
+        textNode.position = SCNVector3Make(positionX, positionY, positionZ + 15.0 * length * scale)
+        
+        let background = SCNBox(width: CGFloat(width), height: CGFloat(height), length: CGFloat(length), chamferRadius: 0.0)
+        background.firstMaterial!.diffuse.contents = UIColor.black
+        let backgroundNode = SCNNode(geometry: background)
+        backgroundNode.scale = SCNVector3(scale, scale, scale)
+        backgroundNode.rotation = SCNVector4(rotationX, rotationY, rotationZ, rotationW)
+        backgroundNode.position = SCNVector3Make(positionX + 135.0 * scale, positionY + 15.0 * scale / 2.0, positionZ + 12.0 * length * scale)
+        
+        let cone = SCNCone(topRadius: 0.0, bottomRadius: 10.0, height: 30)
+        cone.firstMaterial!.diffuse.contents = UIColor.red
+        let coneNode = SCNNode(geometry: cone)
+        coneNode.scale = SCNVector3(scale, scale, scale)
+        coneNode.pivot = SCNMatrix4MakeRotation(-1 * Float.pi / 2, 0, 0, 1)
+        coneNode.position = SCNVector3Make(positionX, positionY + 2.0 * height * scale, positionZ + 15.0 * length * scale)
         
         // Add the dart to the scene
-        self.sceneView.scene.rootNode.addChildNode(dartNode)
+        self.sceneView.scene.rootNode.addChildNode(backgroundNode)
+        self.sceneView.scene.rootNode.addChildNode(textNode)
+        self.sceneView.scene.rootNode.addChildNode(coneNode)
+        
+        self.text = text
+        
+        let captions = [
+            "The proton is positively charged",
+            "Whereas the neutron is neutrally charged",
+            "Finally, the electron is negatively charged."
+        ]
+        
+        var index = 0
+        self.textUpdateTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: { (timer: Timer) in
+            if index >= captions.count {
+                timer.invalidate()
+                return
+            }
+            
+            self.text!.string = captions[index]
+            index += 1
+        })
     }
 }

@@ -11,12 +11,12 @@ import UIKit
 
 class StatusViewController: UIViewController {
     
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusLabel: UIStatusLabel!
     
     enum Status: String {
         case searchingForWalls = "Searching for walls"
         case confirmingSelectedWall = "Confirming selected wall"
-        case playingDarts = "Playing darts"
+        case presentingCaptions = "Presenting captions"
         case error = "Error!"
     }
     
@@ -30,5 +30,9 @@ class StatusViewController: UIViewController {
             // Set the status label as well
             self.statusLabel.text = newStatus.rawValue
         }
+    }
+    
+    override func viewDidLoad() {
+        self.statusLabel.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
 }
